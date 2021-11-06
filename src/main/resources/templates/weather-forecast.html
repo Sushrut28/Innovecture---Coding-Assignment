@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Weather Forecast</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style>
+		table,
+		td,
+		th {
+			border: 1px solid black;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		th {
+			text-align: left;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div th:switch="${weatherForeCast}">
+		<div th:case="null">
+
+			<form th:action="@{/forecast/zipcode}">
+				Enter US State Zip Code <br />
+				<input type="text" id="zipcode" name="zipcode" />
+				<button type="submit">Get Forecast</button>
+			</form>
+
+		</div>
+		<div th:case=" *">
+
+			<div th:switch="${weatherForeCast.city}">
+				<div th:case="null">
+					<p th:text="${weatherForeCast.message}"></p>
+				</div>
+
+				<div th:case=" *">
+					<h2>Tomorrow's Weather forecast</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Country</th>
+								<td th:text="${weatherForeCast.city.country}"></td>
+							</tr>
+							<tr>
+								<th>State</th>
+								<td th:text="${weatherForeCast.city.name}"></td>
+							</tr>
+							<tr>
+								<th>Coolest Hour</th>
+								<td th:text="${weatherForeCast.list[0].main.date}"></td>
+							</tr>
+							<tr>
+								<th>Date</th>
+								<td th:text="${weatherForeCast.list[0].main.coolestHour}"></td>
+							</tr>
+							<tr>
+								<th>Minium Temperature</th>
+								<td th:text="${weatherForeCast.list[0].main.temp_min}"></td>
+							</tr>
+							<tr>
+								<th>Maximum Temperature</th>
+								<td th:text="${weatherForeCast.list[0].main.temp_max}"></td>
+							</tr>
+						</thead>
+					</table>
+					<br />
+
+					<a href="/forecast"> Check other state forecast ?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
