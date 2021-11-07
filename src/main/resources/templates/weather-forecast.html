@@ -53,21 +53,14 @@
 								<td th:text="${weatherForeCast.city.name}"></td>
 							</tr>
 							<tr>
-								<th>Coolest Hour</th>
+								<th>Date</th>
 								<td th:text="${weatherForeCast.list[0].main.date}"></td>
 							</tr>
 							<tr>
-								<th>Date</th>
+								<th>Coolest Hour</th>
 								<td th:text="${weatherForeCast.list[0].main.coolestHour}"></td>
 							</tr>
-							<tr>
-								<th>Minium Temperature</th>
-								<td th:text="${weatherForeCast.list[0].main.temp_min}"></td>
-							</tr>
-							<tr>
-								<th>Maximum Temperature</th>
-								<td th:text="${weatherForeCast.list[0].main.temp_max}"></td>
-							</tr>
+							
 						</thead>
 					</table>
 					<br />
